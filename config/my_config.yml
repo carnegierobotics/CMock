@@ -9,8 +9,8 @@
       - 'array'
       - 'return_thru_ptr'
     :treat_externs: :include
-    :when_no_prototypes: :ignore
-    :enforce_strict_ordering: false
+    :when_no_prototypes: ignore
+    :enforce_strict_ordering: true
     :mock_path: 'mocks'
     :mock_prefix: 'mock_'
     :mock_suffix: ''
@@ -19,7 +19,7 @@
       - 'INLINE'
       - 'INTERRUPT'
       - '__inline__'
-      - '(WORKING_AREA)((.*))' # CMock doesn't know how to parse function macros so get rid of them
+      - '(WORKING_AREA)((.*))' # CMock doesn't know how to parse function macros so get rid of them with some regex magic
     :attributes:
       - 'always_inline'
     :weak: '__attribute ((weak))'
