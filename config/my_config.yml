@@ -20,6 +20,11 @@
       - 'INTERRUPT'
       - '__inline__'
       - '(WORKING_AREA)((.*))' # CMock doesn't know how to parse function macros so get rid of them with some regex magic
+      - '(?<!,.)(void...freefn..void....)' # ^
+      - 'void.canserver_test_disconnect.void..' # these are helper functions created for unit testing, don't mock them
+      - 'void.canserver_test_connect(void).'
+      - 'canicd_emcy_code_t..canserver_get_cached_emcy_messages.void..'
+      - 'struct.can_state..canserver_get_st_ctx.void..'
     :attributes:
       - 'always_inline'
     :weak: '__attribute ((weak))'
