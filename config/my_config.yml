@@ -22,9 +22,12 @@
       # CMock doesn't know how to parse function macros so get rid of them with some regex magic
       - '(WORKING_AREA)((.*))'
       - '(?<!,.)(void...freefn..void....)'
-      # these are helper functions created for unit testing, don't mock them
+      # these use doubles and we don't support those. But somehow there's symbols for them in our actual project
+      - 'int.nvbridge_api_update_double.struct.nvbridge_api_ctx..ctx..const.char..name..uint16_t.len..double.d..'
+      - 'int.nvbridge_api_update_double_sync.struct.nvbridge_api_ctx..ctx..const.char..name..uint16_t.len..double.d..'
+      # these are helper functions created for unit testing, don't mock them cuz cmock doesn't like their parameters
       - 'void.canserver_test_disconnect.void..'
-      - 'void.canserver_test_connect(void).'
+      - 'void.canserver_test_connect.void..'
       - 'canicd_emcy_code_t..canserver_get_cached_emcy_messages.void..'
       - 'struct.can_state..canserver_get_st_ctx.void..'
     :attributes:
